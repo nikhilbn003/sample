@@ -17,8 +17,6 @@ export default async function handle(req,res){
               }).exec()
             );
    } else {
-
-   
    res.json( await findAllProducts());
    }
    
