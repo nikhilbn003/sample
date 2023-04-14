@@ -180,9 +180,9 @@ export default function Checkout() {
   
   return (
     <Layout>
-      <div className='grid justify-items-end mb-3'>
+      {/* <div className='grid justify-items-end mb-3'>
             <button className='bg-emerald-500 rounded-xl  text-white shadow-xl px-3 grid grid-cols  place-content-center ' onClick={handleClick}> login</button>
-           </div> 
+           </div>  */}
       {!productsInfos.length && (
         <div>no products in your shopping cart</div>
       )}

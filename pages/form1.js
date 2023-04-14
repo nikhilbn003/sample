@@ -1,49 +1,41 @@
-import React from 'react'
+// pages/contact.js
 
-const form1 = () => {
+import { useState } from 'react'
+import axios from 'axios'
+
+export default function Contact() {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    message: '',
+  })
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    try {
+      const response = await axios.post('/api/contact', formData)
+      console.log(response.data)
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value })
+  }
 
   return (
-    <div> 
-        <div className='bg-green-400 container mx-auto flex items-center justify-between px-4 '>
-           
-           <div>
-           <a href="#" class="text-black text-2xl font-bold"> investors detail </a>
-            </div> 
-            <div class="text-center">
-      <a href="#" class="text-black px-4 py-2 rounded hover:bg-white">FORM 1</a>
-      <a href="#" class="text-black px-4 py-2 rounded hover:bg-white">FORM 2</a>
-      <a href="#" class="text-black px-4 py-2 rounded hover:bg-white">FORM 3</a>
-    </div>
-    <div>
-      <a href="#" class="text-white px-4 py-2 rounded hover:bg-gray-800">Sign in</a>
-    </div> 
-            
-        </div>
-        <form>
-            <div  className='flex flex-col space-y-4 mt-5 '>
-            <label className='ml-3'> fname: 
-                <input type='text' className='ml-7' placeholder='enter the first name'/>
-            </label>
-            <label className='ml-3'> lname: 
-                <input type='text' className='ml-7' placeholder='enter the last name'/>
-            </label>
-            <label className='ml-3'> email: 
-                <input type='email' className='ml-9' placeholder='enter the email'/>
-            </label>
-            <label className='ml-3'> phone: 
-                <input type='text' className='ml-7' placeholder='enter the phoneno'/>
-            </label>
-            <label className='ml-3'> referral id: 
-                <input type='text' className='ml-7' placeholder='enter the referral id'/>
-            </label>
-            <label className='ml-3'> reg date: 
-                <input type='date' className='ml-4' placeholder='enter the reg date'/>
-            </label>
-            <button> next page </button>
-           </div>
-        </form>
-     </div>
+    <form onSubmit={handleSubmit}>
+      <label htmlFor="name">Name:</label>
+      <input type="text" id="name" name="name" onChange={handleChange} />
+
+      <label htmlFor="email">Email:</label>
+      <input type="email" id="email" name="email" onChange={handleChange} />
+
+      <label htmlFor="message">Message:</label>
+      <textarea id="message" name="message" onChange={handleChange} />
+
+      <button type="submit">Submit</button>
+    </form>
   )
 }
-
-export default form1
