@@ -34,10 +34,7 @@ function Register() {
             >
               Register 
             </button>
-            </div>
-
-                  
-         
+            </div>    
     </div>
     </form>
   )
