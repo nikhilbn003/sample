@@ -62,7 +62,7 @@ export default function Home({products}) {
   const router = useRouter();
 
   
-  function handleClick() {
+  function handleLogin() {
        router.push('/auth/login');
     }
 
@@ -101,7 +101,7 @@ export default function Home({products}) {
        
          </button>
          {!user && (
-            <button className='bg-emerald-500 rounded-xl  text-white shadow-xl px-3 grid grid-cols  place-content-center ' onClick={handleClick}> login
+            <button className='bg-emerald-500 rounded-xl  text-white shadow-xl px-3 grid grid-cols  place-content-center ' onClick={handleLogin}> login
             </button>
        )}
        {user && (
