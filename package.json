@@ -37,5 +37,9 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "postcss": "^8.4.20",
     "tailwindcss": "^3.2.4"
-  }
+  },
+  "main": "index.js",
+  "repository": "https://github.com/nikhilbn003/sample.git",
+  "author": "nikhilbn <nikhil@bhivealts.com>",
+  "license": "MIT"
 }
