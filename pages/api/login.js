@@ -14,3 +14,26 @@ export default async function handle(req,res){
     }
 
 }
+
+
+
+import { connectToDatabase } from './connect';
+
+export default async function handler(req, res) {
+  if (req.method === 'POST') {
+    const { name, email, message } = req.body;
+
+    const client = await connectToDatabase();
+    const db = client.db();
+
+    const result = await db.collection('messages').insertOne({
+      name,
+      email,
+      message,
+    });
+
+    console.log(result);
+
+    res.status(201).json({ message: 'Message sent!' });
+  }
+}

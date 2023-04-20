@@ -160,7 +160,7 @@ export default function Checkout() {
     }
   }
 
-  const deliveryPrice = 5;
+  const deliveryPrice = 10; 
   let subtotal = 0;
   if (selectedProducts?.length) {
     for (let id of selectedProducts) {
@@ -168,7 +168,11 @@ export default function Checkout() {
       subtotal += price;
     }
   }
-  const total = subtotal + deliveryPrice;
+  let total = subtotal + deliveryPrice;
+
+  const handleClearCart = () => {
+    setProductsInfos([]);
+  };
 
   const router = useRouter();
 
@@ -180,16 +184,17 @@ export default function Checkout() {
   
   return (
     <Layout>
-      <div className='grid justify-items-end mb-3'>
+      {/* <div className='grid justify-items-end mb-3'>
             <button className='bg-emerald-500 rounded-xl  text-white shadow-xl px-3 grid grid-cols  place-content-center ' onClick={handleClick}> login</button>
-           </div> 
+           </div>  */}
       {!productsInfos.length && (
-        <div>no products in your shopping cart</div>
+        <div>No products in your shopping cart</div>
       )}
       {productsInfos.length && productsInfos.map(productInfo => {
         const amount = selectedProducts.filter(id => id === productInfo._id).length;
         if (amount === 0) return;
         return (
+        <>
         <div className="flex mb-5 items-center" key={productInfo._id}>
           <div className="bg-gray-100 p-3 rounded-xl shrink-0" style={{boxShadow:'inset 1px 0px 10px 10px rgba(0,0,0,0.1)'}}>
             <img className="w-24" src={productInfo.picture} alt=""/>
@@ -209,7 +214,11 @@ export default function Checkout() {
             </div>
           </div>
         </div>
+       
+        </>
       )})}
+      
+      <button type="submit" className="bg-emerald-500 px-5 py-2 rounded-xl font-bold text-white w my-4 shadow-emerald-300 shadow-lg" onClick={handleClearCart}>Clear cart</button>
       <form action="/api/check" method="POST">
         <div className="mt-8">
           <input name="address" value={address} onChange={e => setAddress(e.target.value)} className="bg-gray-100 w-full rounded-lg px-4 py-2 mb-2" type="text" placeholder="Street address, number"/>
@@ -232,7 +241,7 @@ export default function Checkout() {
           </div>
         </div>
         <input type="hidden" name="products" value={selectedProducts.join(',')}/>
-        <button type="submit" className="bg-emerald-500 px-5 py-2 rounded-xl font-bold text-white w-full my-4 shadow-emerald-300 shadow-lg">Pay ₹{total}</button>
+        <button type="submit" className="bg-emerald-500 px-5 py-2 rounded-xl font-bold text-white  w-full my-4 shadow-emerald-300 shadow-lg">Pay ₹{total}</button>
       </form>
     </Layout>
   );
