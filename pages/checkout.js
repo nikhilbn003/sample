@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import React, { useContext, useEffect, useState } from 'react'
 import Layout from './components/Layout'
 import { ProductsContext } from './components/ProductsContext'
-import login from './login';
+
 
 // function checkout() {
 //   const {selectedProducts,setSelectedProducts} = useContext(ProductsContext);
@@ -178,7 +178,7 @@ export default function Checkout() {
 
   
   function handleClick() {
-       router.push('/login');
+       router.push('/auth/login');
     }
  
   
@@ -214,7 +214,6 @@ export default function Checkout() {
             </div>
           </div>
         </div>
-       
         </>
       )})}
       
@@ -241,7 +240,7 @@ export default function Checkout() {
           </div>
         </div>
         <input type="hidden" name="products" value={selectedProducts.join(',')}/>
-        <button type="submit" className="bg-emerald-500 px-5 py-2 rounded-xl font-bold text-white  w-full my-4 shadow-emerald-300 shadow-lg">Pay ₹{total}</button>
+        <button type="submit" className="bg-emerald-500 px-5 py-2 rounded-xl font-bold text-white  w-full my-4 shadow-emerald-300 shadow-lg" onClick={handleClick}>Pay ₹{total}</button>
       </form>
     </Layout>
   );

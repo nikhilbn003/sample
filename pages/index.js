@@ -69,6 +69,11 @@ export default function Home({products}) {
     function handleCart() {
       router.push('/checkout');
    }
+   
+   function handleProfile(){
+    router.push('/profile')
+   }
+
 
    const {selectedProducts} = useContext(ProductsContext)
 
@@ -133,12 +138,16 @@ export default function Home({products}) {
         <div ref={menuRef} className='bg-white p-2 w-24 shadow-lg absolute  top-16'>
          <ul>
           <li 
-          onClick={()=> setOpen(false)} 
-          className='p-2 text-lg cursor-pointer rounded hover:bg-green-400'>profile</li>
+          onClick={()=>  handleProfile() }   
+          className='p-2 text-lg cursor-pointer rounded hover:bg-green-400'>
+            profile
+          </li>
           <li 
           // onClick={()=> setOpen(false)}
           onClick={handleSignOut}
-          className='p-2 text-lg cursor-pointer rounded hover:bg-green-400'>Logout</li>
+          className='p-2 text-lg cursor-pointer rounded hover:bg-green-400'>
+            Logout
+          </li>
          </ul>
          </div>
           ) }
