@@ -3,7 +3,7 @@ import useLocalStorageState from "use-local-storage-state";
 
 export const ProductsContext = createContext({});
 
-export function  ProductsContextProvider({children}) {
+export  default function  ProductsContextProvider({children}) {
     const [ selectedProducts,setSelectedProducts] = useLocalStorageState('cart',{defaultValue: []});
 
     return(<>
